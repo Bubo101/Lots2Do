@@ -13,3 +13,9 @@ class ProjectListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Project.objects.filter(members=self.request.user)
+
+
+class ProjectDetailView(LoginRequiredMixin, DetailView):
+    model = Project
+    template_name = "projects/detail.html"
+    context_object_name = "project"
