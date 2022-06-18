@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from tasks.models import Task
 from django.urls import reverse_lazy
@@ -25,3 +25,9 @@ class TaskListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Task.objects.filter(assignee=self.request.user)
+
+
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
+    model = Task
+    fields = ["is_completed"]
+    success_url = reverse_lazy("show_my_tasks")
