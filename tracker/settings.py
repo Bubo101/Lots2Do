@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "login"
 
+MARKDOWNIFY = {"default": {"BLEACH": False}}
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "markdownify.apps.MarkdownifyConfig",
 ]
 
 MIDDLEWARE = [
