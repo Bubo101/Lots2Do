@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from tasks.models import Task
 from django.urls import reverse_lazy
@@ -16,3 +16,12 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
         return reverse_lazy(
             "show_project", kwargs={"pk": self.object.project.pk}
         )
+
+
+class TaskListView(LoginRequiredMixin, ListView):
+    model = Task
+    template_name = "tasks/tasklist.html"
+    context_object_name = "task_list"
+
+    def get_queryset(self):
+        return Task.objects.filter(assignee=self.request.user)
