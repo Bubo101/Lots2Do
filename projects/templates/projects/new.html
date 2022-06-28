@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/app.css' %}">
+{% endblock styles %}
+
+{% block title%}
+<title>New</title>
+{% endblock title %}
 {% block content %}
     <main>
         <div>
-            <h1>Create a new project</h1>
-            <form method="post">
+            <h1 class = "Task">Create a new project</h1>
+            <form method="post" class = "form">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button>Create</button>

@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/app.css' %}">
+{% endblock styles %}
+
+{% block title%}
+<title>Projects</title>
+{% endblock title %}
 {% block content%}
     <main>
         <div>
-            <h1>My Projects</h1>
+            <h1 class="titles">To Do Projects</h1>
             <p>
                 <a href="{% url 'create_project' %}">Create a new project</a>
             </p>
@@ -11,7 +19,7 @@
                 <p>You are not assigned to any projects</p>
             {% else %}
 
-                <table>
+                <table class = "table">
                     <thead>
                         <th>Name</th>
                         <th>Number of tasks</th>
@@ -20,9 +28,9 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <a href="{% url 'show_project' project.id %}">{{project.name}}</a>
+                                    <a href="{% url 'show_project' project.id %}" class = "grid">{{project.name}}</a>
                                 </td>
-                                <td>{{project.tasks.all|length}}</td>
+                                <td class = "grid">{{project.tasks.all|length}}</td>
                             </tr>
                         </tbody>
                     {% endfor %}
